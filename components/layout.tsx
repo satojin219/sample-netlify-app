@@ -29,7 +29,7 @@ export const Layout = ({ children, home }: any) => {
           <>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="../public/DSC00846.JPG"
+              src="/DSC00846.JPG"
               className={utilStyles.borderCircle}
               height="144"
               width="144"
