@@ -27,12 +27,12 @@ export const Layout = ({ children, home }: any) => {
       <header className={styles.header}>
         {home ? (
           <>
-            <Image
-              priority
-              src="/DSC00846.JPG"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="../public/DSC00846.JPG"
               className={utilStyles.borderCircle}
-              height={144}
-              width={144}
+              height="144"
+              width="144"
               alt={name}
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
@@ -41,8 +41,8 @@ export const Layout = ({ children, home }: any) => {
           <>
             <Link href="/">
               <a>
-                <Image
-                  priority
+                {/*  eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/images/profile.jpg"
                   className={utilStyles.borderCircle}
                   height={108}
