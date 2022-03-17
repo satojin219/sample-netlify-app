@@ -56,12 +56,12 @@ const Home: NextPage = ({ allPostsData }: any) => {
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }: PostType) => (
+            
             <li className={utilStyles.listItem} key={id}>
-              {title}
-              <br />
-              {id}
-              <br />
-              {date.toString()}
+              <Link href={`/posts/${title}`}>
+              <a>{title}</a>
+              </Link>
+
             </li>
           ))}
         </ul>
