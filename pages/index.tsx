@@ -19,7 +19,7 @@ export async function getStaticProps() {
 }
 type PostType = {
   id: number;
-  date: string;
+  date: object;
   title: string;
 };
 
@@ -61,7 +61,7 @@ const Home: NextPage = ({ allPostsData }: any) => {
               <br />
               {id}
               <br />
-              {date}
+              {date.toString()}
             </li>
           ))}
         </ul>
