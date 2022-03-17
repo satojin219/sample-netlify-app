@@ -10,8 +10,7 @@ import { attributes, react as HomeContent } from "../content/home.md";
 
 export async function getStaticProps() {
   // const allPostsData = getSortedPostsData();
-  let { title, cats, date } = attributes;
-  const allPostsData = { title, cats, date };
+  const allPostsData = getSortedPostsData();
   return {
     props: {
       allPostsData,
@@ -39,7 +38,7 @@ const Home: NextPage = ({ allPostsData }: any) => {
           <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
         </p>
       </section>
-      <article>
+      {/* <article>
         <h1>{allPostsData.title}</h1>
         <HomeContent />
         <ul>
@@ -50,10 +49,10 @@ const Home: NextPage = ({ allPostsData }: any) => {
             </li>
           ))}
         </ul>
-      </article>
+      </article> */}
       {/* Keep the existing code here */}
       {/* Add this <section> tag below the existing <section> tag */}
-      {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }: PostType) => (
@@ -66,7 +65,7 @@ const Home: NextPage = ({ allPostsData }: any) => {
             </li>
           ))}
         </ul>
-      </section> */}
+      </section>
     </Layout>
   );
 };
