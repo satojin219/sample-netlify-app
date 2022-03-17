@@ -10,7 +10,7 @@ cats:
     name: Grumpy cat (Tardar Sauce)
   - name: satojin
     description: Jin Sato is an engineer who recently started a part-time job at a
-      company called Fuller.
+      company called Fuller. he is born in 2002
 ---
 Welcome to my awesome page about cats of the internet.
 
