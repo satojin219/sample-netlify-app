@@ -12,7 +12,7 @@ export function getAllPostIds() {
   return fileNames.map((fileName) => {
     return {
       params: {
-        title: fileName.replace(/\.md$/, ""),
+        post: fileName.replace(/\.md$/, ""),
       },
     };
   });
@@ -31,7 +31,7 @@ export async function getPostData(title: string) {
   const formatedDate = dayjs(matterResult.data.date.toString()).format(
     "YYYY-MM-DD"
   );
-
+  console.log(typeof contentHtml);
   return {
     title,
     contentHtml,
@@ -53,9 +53,9 @@ export function getSortedPostsData() {
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
-      const formatedDate = dayjs(matterResult.data.date.toString()).format(
-        "YYYY-MM-DD"
-      );
+    const formatedDate = dayjs(matterResult.data.date.toString()).format(
+      "YYYY-MM-DD"
+    );
     // Combine the data with the id
     return {
       id,
