@@ -1,17 +1,8 @@
 ---
-title: Awesome kittie
-date: 2019-03-17T19:31:20.591Z
-cats:
-  - description: Maru is a Scottish Fold from Japan, and he loves boxes.
-    name: Maru (まる)
-  - description: Lil Bub is an American celebrity cat known for her unique appearance.
-    name: Lil Bub
-  - description: Grum . py cat is an American celebrity cat known for her grumpy appearance
-    name: Grumpy cat (Tardar Sauce)
-  - name: satojin
-    description: Jin Sato is an engineer who recently started a part-time job at a
-      company called Fuller. he is born in 2002
----
-Welcome to my awesome page about cats of the internet.
+title: Jin Blog
 
-This page is built with NextJS, and content is managed in Netlify
+
+---
+こんにちは、私の名前は佐藤仁です。
+好きな食べ物は鯖の味噌煮です。
+誕生日は2002年2月19日、血液型はA型です。
