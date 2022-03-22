@@ -15,7 +15,7 @@ export function getAllPostIds() {
   });
 }
 
-export function getPostData(title) {
+export function getPostData(title :string) {
   const fullPath = path.join(postsDirectory, `${title}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
