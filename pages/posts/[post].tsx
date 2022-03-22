@@ -33,13 +33,11 @@ export const Post = ({ postData }:any) => {
         <h1 className={post.title}>{postData.title}</h1>
         <p className={post.date}>{postData.date}</p>
         <div className={post.container}>
-          <Image
+          <img
             className={post.img}
             src={`/${postData.image}`}
             alt={postData.title}
-            height={300}
-            width={500}
-            objectFit={"contain"}
+      
           />
           <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </div>
