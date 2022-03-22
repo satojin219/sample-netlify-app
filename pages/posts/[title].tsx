@@ -31,8 +31,10 @@ export const Post = ({ postData }: any) => {
       <Layout>
         <h1 className={title.title}>{postData.title}</h1>
         <p className={title.date}>{postData.date}</p>
+        <div className={title.container}>
         <img className={title.img} src={`/${postData.image}`} alt={postData.title} />
         <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        </div>
 
       </Layout>
     </>
