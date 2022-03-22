@@ -6,7 +6,7 @@ public_folder: img
 collections:
   - label: "Home"
     name: "home"
-    file: "content/home.md"
+    files: "content/home.md"
     fields:
         - { label: "Title", name: "title", widget: "string"}
         - { label: "Description", name: "description", widget: "text"}
