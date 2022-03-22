@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import dayjs from "dayjs";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -27,13 +28,15 @@ export async function getPostData(title: string) {
     .use(html)
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
+  const formatedDate = dayjs(matterResult.data.date.toString()).format(
+    "YYYY-MM-DD"
+  );
 
-  // Combine the data with the id
   return {
     title,
     contentHtml,
     ...matterResult.data,
-    date: matterResult.data.date.toString(),
+    date: formatedDate,
   };
 }
 
