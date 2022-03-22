@@ -1,9 +1,6 @@
-import Link from "next/link";
 import Head from "next/head";
-import Script from "next/script";
 import { Layout } from "../../components/layout";
 import { getPostData } from "../../lib/posts";
-import Router, { useRouter } from "next/router";
 import { getAllPostIds } from "../../lib/posts";
 import title from "./title.module.css"
 
