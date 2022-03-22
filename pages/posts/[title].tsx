@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
   // const allPostsData = getSortedPostsData();
-  const postData = getPostData(params.title);
+  const postData = await getPostData(params.title);
   return {
     props: {
       postData,
@@ -25,6 +25,7 @@ export async function getStaticProps({ params }: any) {
 }
 
 export const Post = ({ postData }: any) => {
+  console.log(postData);
   return (
     <>
       <Head>
@@ -37,15 +38,13 @@ export const Post = ({ postData }: any) => {
           console.log(`script loaded correctly, window.FB has been populated`)
         }
       />
-      <h1>{postData.title}</h1>
-      <img src={`/${ postData.image }`} alt={postData.title} />
-      <p>{postData.body}</p>
-      <h2>
-        <Link href="/">
-          <a>Back to home</a>
-        </Link>
-      </h2>
-      <Layout />
+      <Layout>
+        <h1>{postData.title}</h1>
+        <img src={`/${postData.image}`} alt={postData.title} />
+        <p>{postData.date}</p>
+        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+
+      </Layout>
     </>
   );
 };

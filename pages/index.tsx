@@ -5,8 +5,6 @@ import Link from "next/link";
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
-import { Component } from "react";
-import { attributes, react as HomeContent } from "../content/home.md";
 
 export async function getStaticProps() {
   // const allPostsData = getSortedPostsData();
@@ -38,24 +36,10 @@ const Home: NextPage = ({ allPostsData }: any) => {
           <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
         </p>
       </section>
-      {/* <article>
-        <h1>{allPostsData.title}</h1>
-        <HomeContent />
-        <ul>
-          {allPostsData.cats.map((cat: any, k: any) => (
-            <li key={k}>
-              <h2>{cat.name}</h2>
-              <p>{cat.description}</p>
-            </li>
-          ))}
-        </ul>
-      </article> */}
-      {/* Keep the existing code here */}
-      {/* Add this <section> tag below the existing <section> tag */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }: PostType) => (
+          {allPostsData.map(({ id, title }: PostType) => (
             
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${title}`}>

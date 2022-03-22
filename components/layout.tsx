@@ -39,9 +39,11 @@ export const Layout = ({ children, home }: any) => {
           </>
         ) : (
           <>
-            <Link href="/">
+            <div></div>
+            {/*  eslint-disable-next-line @next/next/no-img-element */}
+
+            {/* <Link href="/">
               <a>
-                {/*  eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/DSC00846.JPG"
                   className={utilStyles.borderCircle}
@@ -55,7 +57,7 @@ export const Layout = ({ children, home }: any) => {
               <Link href="/">
                 <a className={utilStyles.colorInherit}>{name}</a>
               </Link>
-            </h2>
+            </h2> */}
           </>
         )}
       </header>
