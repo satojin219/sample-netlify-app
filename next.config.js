@@ -4,6 +4,9 @@ const nextConfig = {
 }
 
 module.exports = {
+  experimental: {
+    optimizeFonts: true,
+  },
   webpack: (cfg) => {
     cfg.module.rules.push({
       test: /\.md$/,

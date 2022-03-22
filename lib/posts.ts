@@ -53,11 +53,14 @@ export function getSortedPostsData() {
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
+      const formatedDate = dayjs(matterResult.data.date.toString()).format(
+        "YYYY-MM-DD"
+      );
     // Combine the data with the id
     return {
       id,
       ...matterResult.data,
-      date: matterResult.data.date.toString(),
+      date: formatedDate,
     };
   });
   // Sort posts by date

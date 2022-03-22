@@ -1,14 +1,13 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 
-const name = "佐藤　仁";
+const name = "Jin Blog";
 export const siteTitle = "Next.js Sample Website";
 export const Layout = ({ children, home }: any) => {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -39,11 +38,9 @@ export const Layout = ({ children, home }: any) => {
           </>
         ) : (
           <>
-            <div></div>
-            {/*  eslint-disable-next-line @next/next/no-img-element */}
-
-            {/* <Link href="/">
+            <Link href="/">
               <a>
+                {/*  eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/DSC00846.JPG"
                   className={utilStyles.borderCircle}
@@ -57,18 +54,20 @@ export const Layout = ({ children, home }: any) => {
               <Link href="/">
                 <a className={utilStyles.colorInherit}>{name}</a>
               </Link>
-            </h2> */}
+            </h2>
           </>
         )}
       </header>
-      <main>{children}</main>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
-        </div>
-      )}
+      <div className={styles.container}>
+        <main>{children}</main>
+        {!home && (
+          <div className={styles.backToHome}>
+            <Link href="/">
+              <a>← Back to home</a>
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

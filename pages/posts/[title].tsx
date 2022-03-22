@@ -5,6 +5,7 @@ import { Layout } from "../../components/layout";
 import { getPostData } from "../../lib/posts";
 import Router, { useRouter } from "next/router";
 import { getAllPostIds } from "../../lib/posts";
+import title from "./title.module.css"
 
 export async function getStaticPaths() {
   const paths = getAllPostIds();
@@ -25,24 +26,16 @@ export async function getStaticProps({ params }: any) {
 }
 
 export const Post = ({ postData }: any) => {
-  console.log(postData);
   return (
     <>
       <Head>
         <title>{postData.title}</title>
       </Head>
-      <Script
-        src="https://connect.facebook.net/en_US/sdk.js"
-        strategy="lazyOnload"
-        onLoad={() =>
-          console.log(`script loaded correctly, window.FB has been populated`)
-        }
-      />
       <Layout>
-        <h1>{postData.title}</h1>
-        <img src={`/${postData.image}`} alt={postData.title} />
-        <p>{postData.date}</p>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <h1 className={title.title}>{postData.title}</h1>
+        <p className={title.date}>{postData.date}</p>
+        <img className={title.img} src={`/${postData.image}`} alt={postData.title} />
+        <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
 
       </Layout>
     </>
