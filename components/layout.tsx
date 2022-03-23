@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const name = "Jin Blog";
 export const siteTitle = "Next.js Sample Website";
-export const Layout = ({ children, home }: any) => {
+export const Layout = ({ home, children, homeData }: any) => {
   return (
     <div>
       <Head>
@@ -17,46 +17,22 @@ export const Layout = ({ children, home }: any) => {
         <meta
           property="og:image"
           content={`https://og-image.vercel.app/${encodeURI(
-            siteTitle
+            homeData.title
           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
-        <meta name="og:title" content={siteTitle} />
+        <meta name="og:title" content={homeData.title} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>
-        {home ? (
-          <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/DSC00846.JPG"
-              className={utilStyles.borderCircle}
-              height="144"
-              width="144"
-              alt={name}
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : (
-          <>
-            <Link href="/">
-              <a>
-                {/*  eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/DSC00846.JPG"
-                  className={utilStyles.borderCircle}
-                  height={108}
-                  width={108}
-                  alt={name}
-                />
-              </a>
-            </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h2>
-          </>
-        )}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={homeData.image}
+          className={utilStyles.borderCircle}
+          height="144"
+          width="144"
+          alt={homeData.title}
+        />
+        <h1 className={utilStyles.heading2Xl}>{homeData.title}</h1>
       </header>
       <div className={styles.container}>
         <main>{children}</main>

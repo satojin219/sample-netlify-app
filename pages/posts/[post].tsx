@@ -1,8 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Layout } from "../../components/layout";
-import { getPostData } from "../../lib/posts";
-import { getAllPostIds } from "../../lib/posts";
+import { getPostData, getAllPostIds, getHomeData } from "../../lib/posts";
 import post from "./post.module.css";
 
 export async function getStaticPaths() {
@@ -16,20 +15,23 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: any) {
   // const allPostsData = getSortedPostsData();
   const postData = await getPostData(params.post);
+  const homeData = await getHomeData();
   return {
     props: {
       postData,
+      homeData,
     },
   };
 }
 
-export const Post = ({ postData }: any) => {
+export const Post = ({ postData, homeData }: any) => {
+
   return (
     <>
       <Head>
         <title>{postData.title}</title>
       </Head>
-      <Layout>
+      <Layout homeData={homeData}>
         <div className={post.container}>
           <h1 className={post.title}>{postData.title}</h1>
           <p className={post.date}>{postData.date}</p>
@@ -42,7 +44,7 @@ export const Post = ({ postData }: any) => {
               height="300"
             />
           </div>
-            <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+          <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </div>
       </Layout>
     </>

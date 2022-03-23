@@ -5,7 +5,7 @@ import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData, getHomeData } from "../lib/posts";
 import { AiFillTwitterCircle, AiFillGithub } from "react-icons/ai";
-import { hostname } from "os";
+
 
 export async function getStaticProps() {
   // const allPostsData = getSortedPostsData();
@@ -27,9 +27,8 @@ type PostType = {
 };
 
 const Home: NextPage = ({ allPostsData, homeData }: any) => {
-  console.log(homeData);
   return (
-    <Layout home>
+    <Layout home homeData={homeData}>
       <Head>
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
