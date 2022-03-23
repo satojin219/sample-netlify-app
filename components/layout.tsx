@@ -3,8 +3,6 @@ import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 
-const name = "Jin Blog";
-export const siteTitle = "Next.js Sample Website";
 export const Layout = ({ home, children, homeData }: any) => {
   return (
     <div>
@@ -26,7 +24,7 @@ export const Layout = ({ home, children, homeData }: any) => {
       <header className={styles.header}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={homeData.image}
+          src={`/${homeData.image}`}
           className={utilStyles.borderCircle}
           height="144"
           width="144"
