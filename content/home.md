@@ -1,6 +1,6 @@
 ---
 title: Jin Blog
-image: img/ゴリラ.jpeg
+image: img/dsc00846.jpg
 ---
 
 こんにちは、私の名前は佐藤仁です。
