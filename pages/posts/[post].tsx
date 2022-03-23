@@ -23,23 +23,26 @@ export async function getStaticProps({ params }: any) {
   };
 }
 
-export const Post = ({ postData }:any) => {
+export const Post = ({ postData }: any) => {
   return (
     <>
       <Head>
         <title>{postData.title}</title>
       </Head>
       <Layout>
-        <h1 className={post.title}>{postData.title}</h1>
-        <p className={post.date}>{postData.date}</p>
         <div className={post.container}>
-          <img
-            className={post.img}
-            src={`/${postData.image}`}
-            alt={postData.title}
-      
-          />
-          <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+          <h1 className={post.title}>{postData.title}</h1>
+          <p className={post.date}>{postData.date}</p>
+          <div className={post.imgWrapper}>
+            <img
+              className={post.img}
+              src={`/${postData.image}`}
+              alt={postData.title}
+              width="400"
+              height="300"
+            />
+          </div>
+            <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </div>
       </Layout>
     </>

@@ -6,6 +6,7 @@ import html from "remark-html";
 import dayjs from "dayjs";
 
 const postsDirectory = path.join(process.cwd(), "posts");
+const homeDirectory = path.join(process.cwd(), "content");
 
 export function getAllPostIds() {
   const fileNames = fs.readdirSync(postsDirectory);
@@ -39,6 +40,12 @@ export async function getPostData(title: string) {
     date: formatedDate,
   };
 }
+type postDataType = {
+  title: string;
+  contentHtml: string;
+  date: string;
+  matterResult: { [key: string]: string };
+};
 
 export function getSortedPostsData() {
   // Get file names under /posts

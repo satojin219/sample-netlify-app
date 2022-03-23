@@ -17,4 +17,11 @@
   font-weight: 500;
   font-size: medium;
 }
-
+.img {
+  object-fit: contain;
+}
+.imgWrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
