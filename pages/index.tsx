@@ -3,15 +3,20 @@ import Head from "next/head";
 import Link from "next/link";
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../lib/posts";
+import { getSortedPostsData, getHomeData } from "../lib/posts";
 import { AiFillTwitterCircle, AiFillGithub } from "react-icons/ai";
+import { hostname } from "os";
 
 export async function getStaticProps() {
   // const allPostsData = getSortedPostsData();
   const allPostsData = getSortedPostsData();
+  const homeData = await getHomeData();
+
+  // console.log(JSON.parse(JSON.stringify(homeData)));
   return {
     props: {
       allPostsData,
+      homeData,
     },
   };
 }
@@ -21,7 +26,8 @@ type PostType = {
   title: string;
 };
 
-const Home: NextPage = ({ allPostsData }: any) => {
+const Home: NextPage = ({ allPostsData, homeData }: any) => {
+  console.log(homeData);
   return (
     <Layout home>
       <Head>
@@ -32,17 +38,11 @@ const Home: NextPage = ({ allPostsData }: any) => {
           href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap"
           rel="stylesheet"
         ></link>
-        <title>{siteTitle}</title>
+        <title>{homeData.title}</title>
       </Head>{" "}
       <section className={utilStyles.headingMd}>
         <h2 className={utilStyles.headingLg}>Introduction</h2>
-        <p>
-          こんにちは、私の名前は佐藤仁です。
-          <br></br>
-          好きな食べ物は鯖の味噌煮です。
-          <br></br>
-          誕生日は2002年2月19日、血液型はA型です。
-        </p>
+        <p dangerouslySetInnerHTML={{ __html: homeData.contentHtml }} />
         <div className={utilStyles.flexJustifyCenter}>
           <a
             className={utilStyles.marginX10px}

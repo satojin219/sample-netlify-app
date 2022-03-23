@@ -19,6 +19,21 @@ export function getAllPostIds() {
   });
 }
 
+export async function getHomeData() {
+  const fullPath = path.join(homeDirectory, "home.md");
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  // Use gray-matter to parse the post metadata section
+  const matterResult = matter(fileContents);
+  const processedContent = await remark()
+    .use(html)
+    .process(matterResult.content);
+  const contentHtml = processedContent.toString();
+  return {
+    contentHtml,
+    ...matterResult.data,
+  }
+}
+
 export async function getPostData(title: string) {
   const fullPath = path.join(postsDirectory, `${title}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -32,7 +47,6 @@ export async function getPostData(title: string) {
   const formatedDate = dayjs(matterResult.data.date.toString()).format(
     "YYYY-MM-DD"
   );
-  console.log(typeof contentHtml);
   return {
     title,
     contentHtml,
@@ -40,6 +54,7 @@ export async function getPostData(title: string) {
     date: formatedDate,
   };
 }
+
 type postDataType = {
   title: string;
   contentHtml: string;
@@ -60,6 +75,7 @@ export function getSortedPostsData() {
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
+
     const formatedDate = dayjs(matterResult.data.date.toString()).format(
       "YYYY-MM-DD"
     );
