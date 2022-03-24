@@ -36,6 +36,10 @@ export const Post = ({ postData, homeData }: any) => {
           <h1 className={post.title}>{postData.title}</h1>
           <p className={post.date}>{postData.date}</p>
           <div className={post.imgWrapper}>
+            <picture>
+              <source media="(min-width:320px;)"/>
+              <source />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className={post.img}
               src={`/${postData.image}`}
@@ -43,6 +47,7 @@ export const Post = ({ postData, homeData }: any) => {
               width="400"
               height="300"
             />
+            </picture>
           </div>
           <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </div>
