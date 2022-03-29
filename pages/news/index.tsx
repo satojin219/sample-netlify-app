@@ -47,10 +47,10 @@ export const News = ({ homeData, dummyDatas }: any) => {
       <Layout homeData={homeData}>
         <div className={news.container}>
           <h1 className={news.title}>ニュース</h1>
-          {dummyDatas.map((dummyData: any) => {
+          {dummyDatas.map((dummyData: any,index:number) => {
             return (
               <Link
-                key={dummyData}
+                key={index}
                 href={`/news/${dummyData.date}/${dummyData.title}`}
               >
                 <a href="">{`${dummyData.date}${" "}${dummyData.title}`}</a>
