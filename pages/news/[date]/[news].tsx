@@ -5,7 +5,7 @@ import { getPostData, getAllPostIds, getHomeData } from "../../../lib/posts";
 import news from "./news.module.css";
 
 export async function getServerSideProps() {
-  const homeData = await getHomeData();
+  // const homeData = await getHomeData();
   const dummyData = {
     date: "2022-03-28",
     title: "ドライブ・マイ・カーがアカデミー国際長編映画賞",
@@ -15,7 +15,7 @@ export async function getServerSideProps() {
   };
   return {
     props: {
-      homeData,
+      // homeData,
       dummyData,
     },
   };
@@ -27,7 +27,7 @@ export const News = ({ homeData, dummyData }: any) => {
       <Head>
         <title>{homeData.title}</title>
       </Head>
-      <Layout homeData={homeData} isNewsPage={true}>
+      {/* <Layout homeData={homeData} isNewsPage={true}> */}
         <div className={news.container}>
           <h1 className={news.title}>{dummyData.title}</h1>
           <p className={news.date}>{dummyData.date}</p>
@@ -47,7 +47,7 @@ export const News = ({ homeData, dummyData }: any) => {
           </div>
           <p>{dummyData.content}</p>
         </div>
-      </Layout>
+      {/* </Layout> */}
     </>
   );
 };
