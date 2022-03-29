@@ -2,8 +2,9 @@ import Head from "next/head";
 import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
+import News from "../pages/news";
 
-export const Layout = ({ home, children, homeData }: any) => {
+export const Layout = ({ home, children, homeData,isNewsPage }: any) => {
   return (
     <div>
       <Head>
@@ -36,9 +37,15 @@ export const Layout = ({ home, children, homeData }: any) => {
         <main>{children}</main>
         {!home && (
           <div className={styles.backToHome}>
-            <Link href="/">
-              <a>← Back to home</a>
-            </Link>
+            {isNewsPage ? (
+              <Link href="/news">
+                <a>← ニュース一覧へ戻る</a>
+              </Link>
+            ) : (
+              <Link href="/">
+                <a>← Back to home</a>
+              </Link>
+            )}
           </div>
         )}
       </div>

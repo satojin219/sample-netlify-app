@@ -70,6 +70,12 @@ const Home: NextPage = ({ allPostsData, homeData }: any) => {
           ))}
         </ul>
       </section>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>News</h2>
+        <Link href={`/news/`}>
+          <a>ニュース一覧へ</a>
+        </Link>
+      </section>
     </Layout>
   );
 };

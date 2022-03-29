@@ -1,0 +1,27 @@
+.container {
+  max-width: 36rem;
+  padding: 0 1rem;
+  margin: 3rem auto 6rem;
+}
+
+.title {
+  font-weight: 800;
+  border-bottom: solid 2px #ccc;
+
+}
+
+.date {
+  display: grid;
+  justify-items: end;
+  opacity: 0.5;
+  font-weight: 500;
+  font-size: medium;
+}
+.img {
+  object-fit: contain;
+}
+.imgWrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
