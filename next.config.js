@@ -7,6 +7,7 @@ module.exports = {
   experimental: {
     optimizeFonts: true,
   },
+  target: "serverless",
   webpack: (cfg) => {
     cfg.module.rules.push({
       test: /\.md$/,
@@ -16,5 +17,3 @@ module.exports = {
     return cfg;
   },
 };
-
-module.exports = { target: "serverless" };
