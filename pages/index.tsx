@@ -34,7 +34,7 @@ export async function getStaticProps() {
       createdAt,
       nextCreatedAt,
     },
-    revalidate: intervalSecond,
+    // revalidate: intervalSecond,
   };
 }
 type PostType = {
