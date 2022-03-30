@@ -5,36 +5,19 @@ import Layout from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData, getHomeData } from "../lib/posts";
 import { AiFillTwitterCircle, AiFillGithub } from "react-icons/ai";
-import dayjs from "dayjs";
-import timezone from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
-
-dayjs.extend(timezone);
-dayjs.extend(utc);
-dayjs.tz.setDefault("Asia/Tokyo");
-
-const intervalSecond = 60;
-const formatStyle = "MM/DD HH:mm:ss";
 
 export async function getStaticProps() {
   // const allPostsData = getSortedPostsData();
   const allPostsData = getSortedPostsData();
   const homeData = await getHomeData();
-  const currentTime = dayjs().tz();
-  const createdAt = currentTime.format(formatStyle);
-  const nextCreatedAt = currentTime
-    .add(intervalSecond, "s")
-    .format(formatStyle);
+
 
   // console.log(JSON.parse(JSON.stringify(homeData)));
   return {
     props: {
       allPostsData,
       homeData,
-      createdAt,
-      nextCreatedAt,
-    },
-    // revalidate: intervalSecond,
+    }
   };
 }
 type PostType = {
@@ -46,8 +29,6 @@ type PostType = {
 const Home: NextPage = ({
   allPostsData,
   homeData,
-  createdAt,
-  nextCreatedAt,
 }: any) => {
   return (
     <Layout home homeData={homeData}>
@@ -97,17 +78,6 @@ const Home: NextPage = ({
         <Link href={`/news/`}>
           <a>ニュース一覧へ</a>
         </Link>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Interval</h2>
-        <p>{intervalSecond}s</p>
-        <br />
-        <h3>Page accessed time</h3>
-        <p>{dayjs().tz().format(formatStyle)}</p>
-        <h3>Next HTML can be generated time</h3>
-        <p>{nextCreatedAt}</p>
-        <h3>HTML created time</h3>
-        <p>{createdAt}</p>
       </section>
     </Layout>
   );

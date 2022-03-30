@@ -3,12 +3,22 @@ import Image from "next/image";
 import { Layout } from "../../components/layout";
 import { getPostData, getAllPostIds, getHomeData } from "../../lib/posts";
 import post from "./post.module.css";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(timezone);
+dayjs.extend(utc);
+dayjs.tz.setDefault("Asia/Tokyo");
+
+const intervalSecond = 20;
+const formatStyle = "MM/DD HH:mm:ss";
 
 export async function getStaticPaths() {
   const paths = getAllPostIds();
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -16,16 +26,23 @@ export async function getStaticProps({ params }: any) {
   // const allPostsData = getSortedPostsData();
   const postData = await getPostData(params.post);
   const homeData = await getHomeData();
+  const currentTime = dayjs().tz();
+  const createdAt = currentTime.format(formatStyle);
+  const nextCreatedAt = currentTime
+    .add(intervalSecond, "s")
+    .format(formatStyle);
   return {
     props: {
       postData,
       homeData,
+      createdAt,
+      nextCreatedAt,
     },
+    revalidate: intervalSecond,
   };
 }
 
-export const Post = ({ postData, homeData }: any) => {
-
+export const Post = ({ postData, homeData, createdAt, nextCreatedAt }: any) => {
   return (
     <>
       <Head>
@@ -37,19 +54,28 @@ export const Post = ({ postData, homeData }: any) => {
           <p className={post.date}>{postData.date}</p>
           <div className={post.imgWrapper}>
             <picture>
-              <source media="(min-width:320px;)"/>
+              <source media="(min-width:320px;)" />
               <source />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className={post.img}
-              src={`/${postData.image}`}
-              alt={postData.title}
-              width="400"
-              height="300"
-            />
+              <img
+                className={post.img}
+                src={`/${postData.image}`}
+                alt={postData.title}
+                width="400"
+                height="300"
+              />
             </picture>
           </div>
           <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+          <h2>Interval</h2>
+          <p>{intervalSecond}s</p>
+          <br />
+          <h3>Page accessed time</h3>
+          <p>{dayjs().tz().format(formatStyle)}</p>
+          <h3>Next HTML can be generated time</h3>
+          <p>{nextCreatedAt}</p>
+          <h3>HTML created time</h3>
+          <p>{createdAt}</p>
         </div>
       </Layout>
     </>
