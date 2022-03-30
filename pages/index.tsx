@@ -13,7 +13,7 @@ dayjs.extend(timezone);
 dayjs.extend(utc);
 dayjs.tz.setDefault("Asia/Tokyo");
 
-const intervalSecond = 20;
+const intervalSecond = 60;
 const formatStyle = "MM/DD HH:mm:ss";
 
 export async function getStaticProps() {
@@ -34,7 +34,7 @@ export async function getStaticProps() {
       createdAt,
       nextCreatedAt,
     },
-    revalidate: 20,
+    revalidate: intervalSecond,
   };
 }
 type PostType = {
