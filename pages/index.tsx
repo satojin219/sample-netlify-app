@@ -8,7 +8,7 @@ import { AiFillTwitterCircle, AiFillGithub } from "react-icons/ai";
 
 export async function getStaticProps() {
   // const allPostsData = getSortedPostsData();
-  const allPostsData = getSortedPostsData();
+  const allPostsData = await getSortedPostsData();
   const homeData = await getHomeData();
 
 
