@@ -20,7 +20,7 @@ export async function getStaticPaths() {
   const paths = await getAllPostIds();
   return {
     paths,
-    fallback: "unstable_blocking",
+    fallback: "blocking",
   };
 }
 
