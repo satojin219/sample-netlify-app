@@ -7,6 +7,8 @@ import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import { useRouter } from "next/router";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "../../components/ErrorFallback";
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -55,34 +57,36 @@ export const Post = ({ postData, homeData, createdAt, nextCreatedAt }: any) => {
         <title>{postData.title}</title>
       </Head>
       <Layout homeData={homeData}>
-        <div className={post.container}>
-          <h1 className={post.title}>{postData.title}</h1>
-          <p className={post.date}>{postData.date}</p>
-          <div className={post.imgWrapper}>
-            <picture>
-              <source media="(min-width:320px;)" />
-              <source />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                className={post.img}
-                src={`/${postData.image}`}
-                alt={postData.title}
-                width="400"
-                height="300"
-              />
-            </picture>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <div className={post.container}>
+            <h1 className={post.title}>{postData.title}</h1>
+            <p className={post.date}>{postData.date}</p>
+            <div className={post.imgWrapper}>
+              <picture>
+                <source media="(min-width:320px;)" />
+                <source />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className={post.img}
+                  src={`/${postData.image}`}
+                  alt={postData.title}
+                  width="400"
+                  height="300"
+                />
+              </picture>
+            </div>
+            <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+            <h2>Interval</h2>
+            <p>{intervalSecond}s</p>
+            <br />
+            <h3>Page accessed time</h3>
+            <p>{dayjs().tz().format(formatStyle)}</p>
+            <h3>Next HTML can be generated time</h3>
+            <p>{nextCreatedAt}</p>
+            <h3>HTML created time</h3>
+            <p>{createdAt}</p>
           </div>
-          <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-          <h2>Interval</h2>
-          <p>{intervalSecond}s</p>
-          <br />
-          <h3>Page accessed time</h3>
-          <p>{dayjs().tz().format(formatStyle)}</p>
-          <h3>Next HTML can be generated time</h3>
-          <p>{nextCreatedAt}</p>
-          <h3>HTML created time</h3>
-          <p>{createdAt}</p>
-        </div>
+        </ErrorBoundary>
       </Layout>
     </>
   );
