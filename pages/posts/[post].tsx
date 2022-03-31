@@ -6,6 +6,7 @@ import post from "./post.module.css";
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
+import { useRouter } from "next/router";
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -18,7 +19,7 @@ export async function getStaticPaths() {
   const paths = getAllPostIds();
   return {
     paths,
-    fallback: "blocking",
+    fallback: true,
   };
 }
 
@@ -43,6 +44,11 @@ export async function getStaticProps({ params }: any) {
 }
 
 export const Post = ({ postData, homeData, createdAt, nextCreatedAt }: any) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <Head>
