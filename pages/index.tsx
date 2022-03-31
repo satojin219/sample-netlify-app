@@ -11,13 +11,13 @@ export async function getStaticProps() {
   const allPostsData = await getSortedPostsData();
   const homeData = await getHomeData();
 
-
   // console.log(JSON.parse(JSON.stringify(homeData)));
   return {
     props: {
       allPostsData,
       homeData,
-    }
+    },
+    revalidate: 60,
   };
 }
 type PostType = {
@@ -26,10 +26,7 @@ type PostType = {
   title: string;
 };
 
-const Home: NextPage = ({
-  allPostsData,
-  homeData,
-}: any) => {
+const Home: NextPage = ({ allPostsData, homeData }: any) => {
   return (
     <Layout home homeData={homeData}>
       <Head>
