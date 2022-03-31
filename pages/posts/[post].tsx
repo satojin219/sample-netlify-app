@@ -16,10 +16,10 @@ const intervalSecond = 60;
 const formatStyle = "MM/DD HH:mm:ss";
 
 export async function getStaticPaths() {
-  const paths = getAllPostIds();
+  const paths = await getAllPostIds();
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
