@@ -1,8 +1,14 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "../components/ErrorFallback";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <Component {...pageProps} />
+    </ErrorBoundary>
+  );
 }
 
-export default MyApp
+export default MyApp;
