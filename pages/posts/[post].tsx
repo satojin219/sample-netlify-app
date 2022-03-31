@@ -47,7 +47,7 @@ export async function getStaticProps({ params }: any) {
       createdAt,
       nextCreatedAt,
     },
-    revalidate: intervalSecond,
+    // revalidate: intervalSecond,
   };
 }
 
