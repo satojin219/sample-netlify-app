@@ -3,8 +3,10 @@ import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import News from "../pages/news";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "../components/ErrorFallback";
 
-export const Layout = ({ home, children, homeData,isNewsPage }: any) => {
+export const Layout = ({ home, children, homeData, isNewsPage }: any) => {
   return (
     <div>
       <Head>
@@ -34,7 +36,9 @@ export const Layout = ({ home, children, homeData,isNewsPage }: any) => {
         <h1 className={utilStyles.heading2Xl}>{homeData.title}</h1>
       </header>
       <div className={styles.container}>
-        <main>{children}</main>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <main>{children}</main>
+        </ErrorBoundary>
         {!home && (
           <div className={styles.backToHome}>
             {isNewsPage ? (
