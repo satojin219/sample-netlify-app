@@ -24,9 +24,17 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
+  let error = undefined;
   // const allPostsData = getSortedPostsData();
-  const postData = await getPostData(params.post);
-  const homeData = await getHomeData();
+  const postData = await getPostData(params.post).catch((e) => (error = e));
+  const homeData = await getHomeData().catch((e) => (error = e));
+
+  if (!!error) {
+    return {
+      error: `${error}`,
+    };
+  }
+
   const currentTime = dayjs().tz();
   const createdAt = currentTime.format(formatStyle);
   const nextCreatedAt = currentTime
@@ -43,7 +51,17 @@ export async function getStaticProps({ params }: any) {
   };
 }
 
-export const Post = ({ postData, homeData, createdAt, nextCreatedAt }: any) => {
+export const Post = (props: any) => {
+  if (!!props.error) {
+    return (
+      <div>
+        <p>error has occurred</p>
+        <div>{props.error}</div>
+      </div>
+    );
+  }
+
+  const { postData, homeData, createdAt, nextCreatedAt } = props;
   const router = useRouter();
 
   if (router.isFallback) {
