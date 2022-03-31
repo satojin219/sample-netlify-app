@@ -52,6 +52,7 @@ export async function getStaticProps({ params }: any) {
 }
 
 export const Post = (props: any) => {
+  const router = useRouter();
   if (!!props.error) {
     return (
       <div>
@@ -62,8 +63,7 @@ export const Post = (props: any) => {
   }
 
   const { postData, homeData, createdAt, nextCreatedAt } = props;
-  const router = useRouter();
-
+  
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
