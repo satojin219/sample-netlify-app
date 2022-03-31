@@ -17,7 +17,7 @@ export async function getStaticProps() {
       allPostsData,
       homeData,
     },
-    revalidate: 60,
+
   };
 }
 type PostType = {

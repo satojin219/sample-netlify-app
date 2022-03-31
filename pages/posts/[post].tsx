@@ -8,6 +8,7 @@ import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import { useRouter } from "next/router";
 
+export const config = { amp: true };
 dayjs.extend(timezone);
 dayjs.extend(utc);
 dayjs.tz.setDefault("Asia/Tokyo");
@@ -19,7 +20,7 @@ export async function getStaticPaths() {
   const paths = await getAllPostIds();
   return {
     paths,
-    fallback: true,
+    fallback: "unstable_blocking",
   };
 }
 
@@ -63,7 +64,7 @@ export const Post = (props: any) => {
   }
 
   const { postData, homeData, createdAt, nextCreatedAt } = props;
-  
+
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
