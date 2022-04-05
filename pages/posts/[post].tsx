@@ -36,10 +36,8 @@ export async function getStaticProps({ params }: any) {
 
   let error = undefined;
   // const allPostsData = getSortedPostsData();
-  const postData = await getPostData(params.post).catch((e) => (error = e));
-  const homeData = await getHomeData().catch((e) => (error = e));
-  console.log(postData)
-  console.log(homeData)
+  // const postData = await getPostData(params.post).catch((e) => (error = e));
+  // const homeData = await getHomeData().catch((e) => (error = e));
 
   if (error) {
     console.log(error);
@@ -55,8 +53,8 @@ export async function getStaticProps({ params }: any) {
     .format(formatStyle);
   return {
     props: {
-      postData,
-      homeData,
+      // postData,
+      // homeData,
       createdAt,
       nextCreatedAt,
     },
@@ -76,7 +74,7 @@ export const Post = (props: any) => {
     );
   }
 
-  const { postData, homeData, createdAt, nextCreatedAt } = props;
+  const { createdAt, nextCreatedAt } = props;
 
   // if (router.isFallback) {
   //   return (
@@ -98,18 +96,19 @@ export const Post = (props: any) => {
     <>
       <ErrorBoundary FallbackComponent={ErrorFallback} onError={onError}>
         <Head>
-          <title>{postData.title}</title>
+          <title></title>
+          {/* {postData.title} */}
         </Head>
-        <Layout homeData={homeData}>
+        {/* <Layout homeData={homeData}>
           <div className={post.container}>
             <h1 className={post.title}>{postData.title}</h1>
             <p className={post.date}>{postData.date}</p>
             <div className={post.imgWrapper}>
               <picture>
                 <source media="(min-width:320px;)" />
-                <source />
+                <source /> */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                {/* <img
                   className={post.img}
                   src={`/${postData.image}`}
                   alt={postData.title}
@@ -118,7 +117,7 @@ export const Post = (props: any) => {
                 />
               </picture>
             </div>
-            <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+            <p dangerouslySetInnerHTML={{ __html: postData.contentHtml }} /> */}
             <h2>Interval</h2>
             <p>{intervalSecond}s</p>
             <br />
@@ -128,8 +127,8 @@ export const Post = (props: any) => {
             <p>{nextCreatedAt}</p>
             <h3>HTML created time</h3>
             <p>{createdAt}</p>
-          </div>
-        </Layout>
+          {/* </div>
+        </Layout> */}
       </ErrorBoundary>
     </>
   );
