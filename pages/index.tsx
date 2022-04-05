@@ -17,7 +17,6 @@ export async function getStaticProps() {
       allPostsData,
       homeData,
     },
-
   };
 }
 type PostType = {
