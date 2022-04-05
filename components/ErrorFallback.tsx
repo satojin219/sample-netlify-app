@@ -1,13 +1,14 @@
 import { ErrorBoundary } from "react-error-boundary";
-
+import { FallbackProps } from "react-error-boundary";
 type Props = {
-    error: any
+  error: FallbackProps
+  
 }
-export const ErrorFallback: React.VFC<Props> = (props) => {
+export const ErrorFallback = ({ error } :FallbackProps) => {
     return (
       <div role="alert">
         <p>Something went wrong:</p>
-        <pre>{props.error.message}</pre>
+        <pre>{error.message}</pre>
       </div>
     );
     
