@@ -19,7 +19,7 @@ export async function getStaticPaths() {
   const paths = await getAllPostIds();
   return {
     paths,
-    fallback: "blocking",
+
   };
 }
 
@@ -48,7 +48,7 @@ export async function getStaticProps({ params }: any) {
       createdAt,
       nextCreatedAt,
     },
-    revalidate: 60,
+
   };
 }
 
