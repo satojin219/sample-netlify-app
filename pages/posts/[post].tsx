@@ -51,7 +51,7 @@ export async function getStaticProps({ params }: any) {
       createdAt,
       nextCreatedAt,
     },
-    revalidate:60
+    revalidate:300
 
   };
 }
