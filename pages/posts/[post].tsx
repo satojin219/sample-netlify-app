@@ -21,6 +21,11 @@ const formatStyle = "MM/DD HH:mm:ss";
 
 export async function getStaticPaths() {
   const paths = await getAllPostIds();
+    if (!paths) {
+      return {
+        notFound: true,
+      };
+    }
   return {
     paths,
     fallback: false,
