@@ -31,6 +31,8 @@ export async function getStaticProps({ params }: any) {
   // const allPostsData = getSortedPostsData();
   const postData = await getPostData(params.post).catch((e) => (error = e));
   const homeData = await getHomeData().catch((e) => (error = e));
+  console.log(postData)
+  console.log(homeData)
 
   if (error) {
     console.log(error);
@@ -51,7 +53,7 @@ export async function getStaticProps({ params }: any) {
       createdAt,
       nextCreatedAt,
     },
-    revalidate:300
+    revalidate:60
 
   };
 }
