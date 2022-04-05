@@ -37,7 +37,7 @@ export async function getStaticProps({ params }: any) {
   let error = undefined;
   // const allPostsData = getSortedPostsData();
   // const postData = await getPostData(params.post).catch((e) => (error = e));
-  // const homeData = await getHomeData().catch((e) => (error = e));
+  const homeData = await getHomeData().catch((e) => (error = e));
 
   if (error) {
     console.log(error);
@@ -54,7 +54,7 @@ export async function getStaticProps({ params }: any) {
   return {
     props: {
       // postData,
-      // homeData,
+      homeData,
       createdAt,
       nextCreatedAt,
     },
@@ -74,7 +74,7 @@ export const Post = (props: any) => {
     );
   }
 
-  const { createdAt, nextCreatedAt } = props;
+  const { homeData,createdAt, nextCreatedAt } = props;
 
   // if (router.isFallback) {
   //   return (
@@ -99,8 +99,8 @@ export const Post = (props: any) => {
           <title></title>
           {/* {postData.title} */}
         </Head>
-        {/* <Layout homeData={homeData}>
-          <div className={post.container}>
+        <Layout homeData={homeData}>
+          {/* <div className={post.container}>
             <h1 className={post.title}>{postData.title}</h1>
             <p className={post.date}>{postData.date}</p>
             <div className={post.imgWrapper}>
@@ -127,8 +127,8 @@ export const Post = (props: any) => {
             <p>{nextCreatedAt}</p>
             <h3>HTML created time</h3>
             <p>{createdAt}</p>
-          {/* </div>
-        </Layout> */}
+          {/* </div> */}
+        </Layout>
       </ErrorBoundary>
     </>
   );
