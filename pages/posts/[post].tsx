@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import {ErrorBoundary} from "react-error-boundary";
 import { ErrorFallback } from "../../components/ErrorFallback"
 
-export const config = { amp: true };
+
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
