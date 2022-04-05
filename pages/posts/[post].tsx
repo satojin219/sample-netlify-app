@@ -54,7 +54,7 @@ export async function getStaticProps({ params }: any) {
 
 export const Post = (props: any) => {
   const router = useRouter();
-  if (!!props.error) {
+  if (props.error) {
     return (
       <div>
         <p>error has occurred</p>
