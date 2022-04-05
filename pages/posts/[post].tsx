@@ -8,7 +8,9 @@ import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import { useRouter } from "next/router";
 import {ErrorBoundary} from "react-error-boundary";
-import  { ErrorFallback } from "../../components/ErrorFallback"
+import { ErrorFallback } from "../../components/ErrorFallback"
+
+export const config = { amp: true };
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -21,7 +23,7 @@ export async function getStaticPaths() {
   const paths = await getAllPostIds();
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   };
 }
 
