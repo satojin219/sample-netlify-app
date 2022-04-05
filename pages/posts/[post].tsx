@@ -21,7 +21,7 @@ export async function getStaticPaths() {
   const paths = await getAllPostIds();
   return {
     paths,
-    fallback: "blocking",
+    fallback: false,
   };
 }
 
@@ -71,16 +71,16 @@ export const Post = (props: any) => {
 
   const { postData, homeData, createdAt, nextCreatedAt } = props;
 
-  // if (router.isFallback) {
-  //   return (
-  //     <>
-  //       <Head>
-  //         <title>{postData.title}</title>
-  //       </Head>
-  //       <div>Loading...</div>
-  //     </>
-  //   );
-  // }
+  if (router.isFallback) {
+    return (
+      <>
+        <Head>
+          <title>{postData.title}</title>
+        </Head>
+        <div>Loading...</div>
+      </>
+    );
+  }
 
   const onError = (error: Error, info: { componentStack: string }) => {
     console.log("error.message", error.message);
