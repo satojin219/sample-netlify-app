@@ -81,7 +81,6 @@ export const Post = (props: any) => {
   // }
 
   const onError = (error: Error, info: { componentStack: string }) => {
-    // ここでログ出力などを行う
     console.log("error.message", error.message);
     console.log("info.componentStack:", info.componentStack);
   };
