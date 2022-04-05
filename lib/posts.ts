@@ -36,6 +36,7 @@ export async function getHomeData() {
 
 export async function getPostData(title: string) {
   const fullPath = path.join(postsDirectory, `${title}.md`);
+
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   // Use gray-matter to parse the post metadata section

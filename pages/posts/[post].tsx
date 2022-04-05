@@ -19,11 +19,12 @@ export async function getStaticPaths() {
   const paths = await getAllPostIds();
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
 
 export async function getStaticProps({ params }: any) {
+
   let error = undefined;
   // const allPostsData = getSortedPostsData();
   const postData = await getPostData(params.post).catch((e) => (error = e));
@@ -48,6 +49,7 @@ export async function getStaticProps({ params }: any) {
       createdAt,
       nextCreatedAt,
     },
+    revalidate:60
 
   };
 }
@@ -65,16 +67,16 @@ export const Post = (props: any) => {
 
   const { postData, homeData, createdAt, nextCreatedAt } = props;
 
-  if (router.isFallback) {
-    return (
-      <>
-        <Head>
-          <title>{postData.title}</title>
-        </Head>
-        <div>Loading...</div>
-      </>
-    );
-  }
+  // if (router.isFallback) {
+  //   return (
+  //     <>
+  //       <Head>
+  //         <title>{postData.title}</title>
+  //       </Head>
+  //       <div>Loading...</div>
+  //     </>
+  //   );
+  // }
 
   return (
     <>
