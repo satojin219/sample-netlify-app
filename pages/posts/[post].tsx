@@ -7,10 +7,8 @@ import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import { useRouter } from "next/router";
-import {ErrorBoundary} from "react-error-boundary";
-import { ErrorFallback } from "../../components/ErrorFallback"
-
-
+import { ErrorBoundary } from "react-error-boundary";
+import { ErrorFallback } from "../../components/ErrorFallback";
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -21,11 +19,11 @@ const formatStyle = "MM/DD HH:mm:ss";
 
 export async function getStaticPaths() {
   const paths = await getAllPostIds();
-    if (!paths) {
-      return {
-        notFound: true,
-      };
-    }
+  if (!paths) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     paths,
     fallback: "blocking",
@@ -33,12 +31,22 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-
   let error = undefined;
   // const allPostsData = getSortedPostsData();
-  const postData = await getPostData(params.post).then(res => { console.log(res) });
-  const homeData = await getHomeData().then(res =>{console.log(res)});
-
+  const postData = await getPostData(params.post)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  const homeData = await getHomeData()
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 
   if (error) {
     console.log(error);
@@ -59,8 +67,7 @@ export async function getStaticProps({ params }: any) {
       createdAt,
       nextCreatedAt,
     },
-   revalidate:60
-
+    revalidate: 60,
   };
 }
 
@@ -75,7 +82,7 @@ export const Post = (props: any) => {
     );
   }
 
-  const { postData,homeData,createdAt, nextCreatedAt } = props;
+  const { postData, homeData, createdAt, nextCreatedAt } = props;
 
   // if (router.isFallback) {
   //   return (
