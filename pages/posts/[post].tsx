@@ -35,7 +35,7 @@ export async function getStaticProps({ params }: any) {
   const postData = await getPostData(params.post)
     .then((res) => {
       console.log(res);
-      return JSON.parse(JSON.stringify(res));
+      return res;
     })
     .catch((e) => {
       console.log(e);
@@ -44,7 +44,7 @@ export async function getStaticProps({ params }: any) {
   const homeData = await getHomeData()
     .then((res) => {
       console.log(res);
-      return JSON.parse(JSON.stringify(res));
+      return res;
     })
     .catch((e) => {
       console.log(e);
