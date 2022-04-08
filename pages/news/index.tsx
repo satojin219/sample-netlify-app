@@ -38,25 +38,23 @@ import Link from "next/link";
 //   };
 // }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
   const posts = await res.json();
-  console.log(posts);
-  return { props: { posts } };
+  return { props: { posts }, revalidate: 60 };
 }
- const News = ({ posts }:any) => {
+const News = ({ posts }: any) => {
   return (
     <div>
       <h1>POST一覧</h1>
       <ul>
-        {posts.map((post:any) => {
+        {posts.map((post: any) => {
           return <li key={post.id}>{post.title}</li>;
         })}
       </ul>
     </div>
   );
 };
-
 
 // export const News = ({ homeData, dummyDatas }: any) => {
 //   return (
