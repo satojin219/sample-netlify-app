@@ -31,29 +31,24 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-  let error = undefined;
   // const allPostsData = getSortedPostsData();
   const postData = await getPostData(params.post)
     .then((res) => {
       console.log(res);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-  const homeData = await getHomeData()
-    .then((res) => {
-      console.log(res);
+      return JSON.parse(JSON.stringify(res));
     })
     .catch((e) => {
       console.log(e);
     });
 
-  if (error) {
-    console.log(error);
-    return {
-      error: `${error}`,
-    };
-  }
+  const homeData = await getHomeData()
+    .then((res) => {
+      console.log(res);
+      return JSON.parse(JSON.stringify(res));
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 
   const currentTime = dayjs().tz();
   const createdAt = currentTime.format(formatStyle);
