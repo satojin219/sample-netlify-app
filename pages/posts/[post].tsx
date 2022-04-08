@@ -36,8 +36,10 @@ export async function getStaticProps({ params }: any) {
 
   let error = undefined;
   // const allPostsData = getSortedPostsData();
-  const postData = await getPostData(params.post).catch((e) => (error = e));
-  const homeData = await getHomeData().catch((e) => (error = e));
+  const postData = await getPostData(params.post).then(res => { console.log(res) });
+  await console.log(postData);
+  const homeData = await getHomeData().then(res =>{console.log(res)});
+  await console.log(homeData);
 
   if (error) {
     console.log(error);
