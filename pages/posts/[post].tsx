@@ -38,7 +38,24 @@ export async function getStaticProps({ params }: any) {
       return res;
     })
     .catch((e) => {
-      console.log(e);
+      if (e instanceof EvalError) {
+        console.log("EvalError");
+      } else if (e instanceof RangeError) {
+        console.log("rangeError");
+      } else if (e instanceof ReferenceError) {
+        console.log("referenceError");
+      } else if (e instanceof SyntaxError) {
+        console.log("syntaxError");
+      } else if (e instanceof TypeError) {
+        console.log("typeError");
+      } else if (e instanceof URIError) {
+        console.log("URIError");
+      } else {
+        console.log("unknownError");
+      }
+      console.log(`name: ${e.name}`);
+      console.log(`message: ${e.message}`);
+      console.log(`stack: ${e.stack}`);
     });
 
   const homeData = await getHomeData()
@@ -47,7 +64,24 @@ export async function getStaticProps({ params }: any) {
       return res;
     })
     .catch((e) => {
-      console.log(e);
+      if (e instanceof EvalError) {
+        console.log("EvalError");
+      } else if (e instanceof RangeError) {
+        console.log("rangeError");
+      } else if (e instanceof ReferenceError) {
+        console.log("referenceError");
+      } else if (e instanceof SyntaxError) {
+        console.log("syntaxError");
+      } else if (e instanceof TypeError) {
+        console.log("typeError");
+      } else if (e instanceof URIError) {
+        console.log("URIError");
+      } else {
+        console.log("unknownError");
+      }
+      console.log(`name: ${e.name}`);
+      console.log(`message: ${e.message}`);
+      console.log(`stack: ${e.stack}`);
     });
 
   const currentTime = dayjs().tz();
