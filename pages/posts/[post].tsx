@@ -37,9 +37,8 @@ export async function getStaticProps({ params }: any) {
   let error = undefined;
   // const allPostsData = getSortedPostsData();
   const postData = await getPostData(params.post).then(res => { console.log(res) });
-  await console.log(postData);
   const homeData = await getHomeData().then(res =>{console.log(res)});
-  await console.log(homeData);
+
 
   if (error) {
     console.log(error);
@@ -56,7 +55,7 @@ export async function getStaticProps({ params }: any) {
   return {
     props: {
       postData,
-      // homeData,
+      homeData,
       createdAt,
       nextCreatedAt,
     },
@@ -76,7 +75,7 @@ export const Post = (props: any) => {
     );
   }
 
-  const { postData,createdAt, nextCreatedAt } = props;
+  const { postData,homeData,createdAt, nextCreatedAt } = props;
 
   // if (router.isFallback) {
   //   return (
@@ -99,9 +98,9 @@ export const Post = (props: any) => {
       <ErrorBoundary FallbackComponent={ErrorFallback} onError={onError}>
         <Head>
           <title></title>
-          {/* {postData.title} */}
+          {postData.title}
         </Head>
-        {/* <Layout homeData={homeData}> */}
+        <Layout homeData={homeData}>
           <div className={post.container}>
             <h1 className={post.title}>{postData.title}</h1>
             <p className={post.date}>{postData.date}</p>
@@ -130,7 +129,7 @@ export const Post = (props: any) => {
             <h3>HTML created time</h3>
             <p>{createdAt}</p>
           </div>
-        {/* </Layout> */}
+        </Layout>
       </ErrorBoundary>
     </>
   );
